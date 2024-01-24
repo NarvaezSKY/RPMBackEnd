@@ -3,7 +3,7 @@ import  Express  from "express";
 import  cors  from "cors"
 import  morgan  from "morgan";
 import  cookieParser  from "cookie-parser";
-
+import MotoviajeroRoutes from "./src/Routes/Motoviajero.Routes.js"
 //express variable
 const app=Express()
 
@@ -20,6 +20,6 @@ app.use(morgan('dev'))
 app.use(cors(corsOptions))
 app.use(cookieParser())
 
-
+app.use(MotoviajeroRoutes)
 //exporting the app
 export default app
