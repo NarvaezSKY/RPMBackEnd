@@ -1,10 +1,13 @@
 //imports
 import app from "./app.js";
 import { PORT } from "./config/config.js";
+import {connection} from './database/db.js'
 
 //main function
 async function main(){
     try {
+        connection()
+
         //using the enviroment port in app
         app.listen(PORT)
         //log for the port
