@@ -4,7 +4,7 @@ const Motos=new Schema(
     {
         MotoNombre:{type:String},
         MarcaMoto:{type:String},
-        ModeloMoto:{type:Number},
+        ModeloMoto:{type:String},
         AñoMoto: {type: String},
         ConsumoMoto:{type:String},
         CilindrajeMoto:{type:String},
