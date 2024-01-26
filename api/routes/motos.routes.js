@@ -2,9 +2,12 @@ import { Router } from "express";
 import { upload } from "../util/upload.js";
 import { uploadFile } from "../util/uploadFile.js";
 import Moto from "../models/motos.model.js";
+import { deleteMoto, getAllMotos, getMoto } from "../controllers/motos.controller.js";
 
 const router=Router()
 
+router.get('/motos', getAllMotos)
+router.get('/motos/:id', getMoto)
 router.post('/motos', upload.fields([{name: 'FotoMoto', maxCount:1}]),  async (req, res) => {
     
     let body=req.body
@@ -18,7 +21,8 @@ router.post('/motos', upload.fields([{name: 'FotoMoto', maxCount:1}]),  async (r
         const savedMoto=await new Moto({
             MotoNombre: body.MotoNombre,
             ModeloMoto: body.ModeloMoto,
-            AñoMoto: body.AñoMoto,
+            MarcaMoto: body.MarcaMoto,
+            VersionMoto: body.VersionMoto,
             ConsumoMoto: body.ConsumoMoto,
             CilindrajeMoto:body.CilindrajeMoto,
             FotoMoto: downloadURL
@@ -30,5 +34,43 @@ router.post('/motos', upload.fields([{name: 'FotoMoto', maxCount:1}]),  async (r
     
 }
 )
+router.delete('/motos/delete/:id', deleteMoto)
+
+router.put('/motos/update/:id', upload.fields([{ name: 'FotoMoto', maxCount: 1 }]), async (req, res) => {
+    try {
+      const motoId = req.params.id;
+      const body = req.body;
+      const image = req.files.FotoMoto;
+  
+      let nuevosDatos = {
+        MotoNombre: body.MotoNombre,
+        ModeloMoto: body.ModeloMoto,
+        MarcaMoto: body.MarcaMoto,
+        VersionMoto: body.VersionMoto,
+        ConsumoMoto: body.ConsumoMoto,
+        CilindrajeMoto: body.CilindrajeMoto,
+      };
+  
+      if (image && image.length > 0) {
+        const { downloadURL } = await uploadFile(image[0]);
+        nuevosDatos.FotoMoto = downloadURL;
+      }
+  
+      const motoActualizada = await Moto.findByIdAndUpdate(motoId, nuevosDatos, {
+        new: true, // Devolver la moto actualizada
+        runValidators: true, // Ejecutar validaciones de Mongoose
+      });
+  
+      if (!motoActualizada) {
+        return res.status(404).json({ error: 'Moto no encontrada' });
+      }
+  
+      return res.status(200).json({ motoActualizada });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+  });
+  
 
 export default router

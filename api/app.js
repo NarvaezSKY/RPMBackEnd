@@ -4,6 +4,7 @@ import  cors  from "cors"
 import  morgan  from "morgan";
 import  cookieParser  from "cookie-parser";
 import  MotoRouter  from "./routes/motos.routes.js";
+import RutaRouter from './routes/rutas.routes.js'
 
 //express variable
 const app=Express()
@@ -24,6 +25,7 @@ app.use(cookieParser())
 
 //API Endpoints
 app.use('/api', MotoRouter)
+app.use('/api', RutaRouter)
 
 //exporting the app
 export default app
