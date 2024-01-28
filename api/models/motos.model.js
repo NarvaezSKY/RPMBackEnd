@@ -6,7 +6,7 @@ const Motos=new Schema(
         MarcaMoto:{type:String},
         ModeloMoto:{type:String},
         VersionMoto: {type:Number},
-        ConsumoMoto:{type:String},
+        ConsumoMotoLx100km:{type:Number},
         CilindrajeMoto:{type:String},
         FotoMoto:{type:String}
     } ,

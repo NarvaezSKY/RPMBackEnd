@@ -22,7 +22,6 @@ app.use(morgan('dev'))
 app.use(cors(corsOptions))
 app.use(cookieParser())
 
-
 //API Endpoints
 app.use('/api', MotoRouter)
 app.use('/api', RutaRouter)

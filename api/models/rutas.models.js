@@ -6,11 +6,11 @@ const Rutas=new Schema(
         PuntoInicioRuta:{type:String},
         PuntoFinalRuta:{type:String},
         KmTotalesRuta: {type:Number},
+        PresupuestoGas: {type:Number}
     },
     {
         timestamps:true
     } 
-
 )
 
 export default mongoose.model('Ruta', Rutas);

@@ -23,17 +23,16 @@ router.post('/motos', upload.fields([{name: 'FotoMoto', maxCount:1}]),  async (r
             ModeloMoto: body.ModeloMoto,
             MarcaMoto: body.MarcaMoto,
             VersionMoto: body.VersionMoto,
-            ConsumoMoto: body.ConsumoMoto,
+            ConsumoMotoLx100km: parseInt(body.ConsumoMotoLx100km),
             CilindrajeMoto:body.CilindrajeMoto,
             FotoMoto: downloadURL
         }).save()
         return res.status(200).json({
          savedMoto
         })
-    }
-    
-}
+    }}
 )
+
 router.delete('/motos/delete/:id', deleteMoto)
 
 router.put('/motos/update/:id', upload.fields([{ name: 'FotoMoto', maxCount: 1 }]), async (req, res) => {
@@ -47,7 +46,7 @@ router.put('/motos/update/:id', upload.fields([{ name: 'FotoMoto', maxCount: 1 }
         ModeloMoto: body.ModeloMoto,
         MarcaMoto: body.MarcaMoto,
         VersionMoto: body.VersionMoto,
-        ConsumoMoto: body.ConsumoMoto,
+        ConsumoMotoLx100km: body.ConsumoMotoLx100km,
         CilindrajeMoto: body.CilindrajeMoto,
       };
   
@@ -71,6 +70,5 @@ router.put('/motos/update/:id', upload.fields([{ name: 'FotoMoto', maxCount: 1 }
       return res.status(500).json({ error: 'Error interno del servidor' });
     }
   });
-  
 
 export default router

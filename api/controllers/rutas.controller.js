@@ -7,7 +7,6 @@ export const getRutas=async(req,res)=>{
     } catch (error) {
         console.error(error)
     }
-    
 }
 
 export const getRuta=async(req,res)=>{
@@ -20,7 +19,7 @@ export const getRuta=async(req,res)=>{
 }
 
 export const uploadRuta=async(req,res)=>{
-    const {NombreRuta, PuntoInicioRuta, PuntoFinalRuta, KmTotalesRuta} = req.body
+    const {NombreRuta, PuntoInicioRuta, PuntoFinalRuta, KmTotalesRuta, PresupuestoGas} = req.body
 
     try {
         const foundRuta=await Ruta.findOne({NombreRuta})
@@ -30,12 +29,12 @@ export const uploadRuta=async(req,res)=>{
             NombreRuta,
             PuntoInicioRuta,
             PuntoFinalRuta,
-            KmTotalesRuta
+            KmTotalesRuta,
+            PresupuestoGas
         })
 
         const savedRuta=await ruta.save()
         res.status(200).json({savedRuta})
-
     } catch (error) {
         console.log(error)
     }
