@@ -1,8 +1,8 @@
-import Motoviajero from "../Models/Motoviajero.model.js";
-import { createAccesToken } from "../Libs/jwt.js";
+import Motoviajero from "../models/Motoviajero.model.js";
+import { createAccesToken } from "../libs/jwt.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { TOKEN_SECRET } from "../Config/Token.js";
+import { TOKEN_SECRET } from "../config/Token.js";
 
 
 // esta funcion trae todos los usurios registrados

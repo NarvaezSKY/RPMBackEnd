@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { RegisterMotoviajeros,GetAllMotoviajeros,LoginMotoviajero,Logout, VerifyToken, UpdateMotoviajero, DeleteMotoviajero } from "../Controllers/Motoviajero.controller.js";
-import { ValidateSchema } from "../Middlewares/ValidateToken.middlewares.js";
-import { LoginSchema, RegisterSchema } from "../Schemas/Motoviajero.Schema.js";
-import { AuthRequired } from "../Middlewares/ValidateToken.js";
+import { RegisterMotoviajeros,GetAllMotoviajeros,LoginMotoviajero,Logout, VerifyToken, UpdateMotoviajero, DeleteMotoviajero } from "../controllers/Motoviajero.controller.js";
+import { ValidateSchema } from "../middlewares/ValidateToken.middlewares.js";
+import { LoginSchema, RegisterSchema } from "../schemas/Motoviajero.Schema.js";
+import { AuthRequired } from "../middlewares/ValidateToken.js";
 const router = Router();
 
 // estas son las rutas que el usuario debe seguir para utlizar los controladores 
