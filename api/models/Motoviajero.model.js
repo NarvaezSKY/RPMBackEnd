@@ -14,7 +14,7 @@ const MotoviajeroSchema= new Schema({
         require:true,
     },
     NumeroIdent_Mv:{
-        type:String,
+        type:Number,
         require:true,
     },
     FechaNac_Mv:{

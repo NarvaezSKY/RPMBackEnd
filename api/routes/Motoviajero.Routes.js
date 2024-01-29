@@ -9,7 +9,7 @@ const router = Router();
 router.post('/register',ValidateSchema(RegisterSchema),RegisterMotoviajeros)
 router.get("/",GetAllMotoviajeros)
 router.post("/login",ValidateSchema(LoginSchema),LoginMotoviajero)
-router.post("logout",Logout)
+router.post("/logout",Logout)
 router.get("/verify",VerifyToken)
 router.put("/:id",AuthRequired,UpdateMotoviajero)
 router.delete("/:id",DeleteMotoviajero)
