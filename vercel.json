@@ -1,9 +1,6 @@
 {
     "name": "mi-api",
     "version": "1.0.0",
-    "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }],
-    "headers": {
-      "Access-Control-Allow-Origin": "*"
-    }
+    "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
   }
   
