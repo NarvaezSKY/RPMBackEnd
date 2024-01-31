@@ -1,6 +1,4 @@
 {
-    "name": "rpm-api",
-    "version": "1",
     "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
-  }
+}
   
