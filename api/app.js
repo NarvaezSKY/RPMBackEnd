@@ -12,7 +12,7 @@ const app=Express()
 
 //CORS Options
 const corsOptions={
-    origin: 'https://localhost:5173',
+    origin: '*',
     credentials: true,
     optionsSuccessStatus: 200,
 }
@@ -23,7 +23,7 @@ app.use(morgan('dev'))
 app.use(cors(corsOptions))
 app.use(cookieParser())
 //API Endpoints
-app.use(MotoviajeroRoutes)
+app.use('/api', MotoviajeroRoutes)
 app.use('/api', MotoRouter)
 app.use('/api', RutaRouter)
 
