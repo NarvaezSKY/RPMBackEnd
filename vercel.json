@@ -2,10 +2,8 @@
     "name": "mi-api",
     "version": "1.0.0",
     "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }],
-    "build": {
-      "target": "nodejs20"
-    },
     "headers": {
       "Access-Control-Allow-Origin": "*"
     }
   }
+  
