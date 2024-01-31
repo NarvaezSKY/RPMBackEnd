@@ -1,6 +1,6 @@
 {
-    "name": "mi-api",
-    "version": "1.0.0",
+    "name": "rpm-api",
+    "version": "1",
     "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
   }
   
