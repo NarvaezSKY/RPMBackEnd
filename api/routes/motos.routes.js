@@ -7,9 +7,9 @@ import { AuthRequired } from "../middlewares/ValidateToken.js";
 
 const router=Router()
 
-router.get('/motos', AuthRequired, getAllMotos)
-router.get('/motos/:id', AuthRequired, getMoto)
-router.post('/motos', AuthRequired,upload.fields([{name: 'FotoMoto', maxCount:1}]),  async (req, res) => {
+router.get('/motos',  getAllMotos)
+router.get('/motos/:id',  getMoto)
+router.post('/motos', upload.fields([{name: 'FotoMoto', maxCount:1}]),  async (req, res) => {
     
     let body=req.body
     let image=req.files.FotoMoto
@@ -34,9 +34,9 @@ router.post('/motos', AuthRequired,upload.fields([{name: 'FotoMoto', maxCount:1}
     }}
 )
 
-router.delete('/motos/delete/:id', AuthRequired, deleteMoto)
+router.delete('/motos/delete/:id',  deleteMoto)
 
-router.put('/motos/update/:id', AuthRequired,upload.fields([{ name: 'FotoMoto', maxCount: 1 }]), async (req, res) => {
+router.put('/motos/update/:id', upload.fields([{ name: 'FotoMoto', maxCount: 1 }]), async (req, res) => {
     try {
       const motoId = req.params.id;
       const body = req.body;
