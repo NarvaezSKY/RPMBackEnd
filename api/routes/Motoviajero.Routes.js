@@ -11,6 +11,6 @@ router.get("/",GetAllMotoviajeros)
 router.post("/login",ValidateSchema(LoginSchema),LoginMotoviajero)
 router.post("/logout",Logout)
 router.get("/verify",VerifyToken)
-router.put("/:id",AuthRequired,UpdateMotoviajero)
+router.put("/:id",UpdateMotoviajero)
 router.delete("/:id",DeleteMotoviajero)
 export default router;
