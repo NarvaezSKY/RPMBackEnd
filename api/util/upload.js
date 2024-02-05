@@ -1,3 +1,3 @@
-import multer from "multer"
+import multer from "multer";
 //multer memory storage configuration
-export const upload = multer({ storage:multer.memoryStorage() });
+export const upload = multer({ storage: multer.memoryStorage() });

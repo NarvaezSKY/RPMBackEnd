@@ -4,7 +4,6 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config/Token.js";
 
-
 // esta funcion trae todos los usurios registrados
 export const GetAllMotoviajeros = async (req, res) => {
   try {
@@ -15,7 +14,7 @@ export const GetAllMotoviajeros = async (req, res) => {
   }
 };
 
-// esta funcion crea o registra los datos ingresados en la base de datos 
+// esta funcion crea o registra los datos ingresados en la base de datos
 export const RegisterMotoviajeros = async (req, res) => {
   const {
     Nombres_Mv,
@@ -54,7 +53,7 @@ export const RegisterMotoviajeros = async (req, res) => {
   }
 };
 
-// permite al usuario ingresar con los credenciales que ingreso al registarse 
+// permite al usuario ingresar con los credenciales que ingreso al registarse
 export const LoginMotoviajero = async (req, res) => {
   const { Email_Mv, Contraseña_Mv } = req.body;
 
@@ -82,7 +81,7 @@ export const LoginMotoviajero = async (req, res) => {
   }
 };
 
-// esta funcion realiza el cierre de sesion 
+// esta funcion realiza el cierre de sesion
 export const Logout = async (req, res) => {
   res.cookie("token", "", {
     expires: new Date(0),
@@ -103,14 +102,18 @@ export const Logout = async (req, res) => {
 //   });
 // };
 
-export const UpdateMotoviajero= async (req, res, next) => {
-    try {
-        const UpMotoviajero= await Motoviajero.findByIdAndUpdate(req.params.id, req.body,{new:true});
-        res.json({message:"datos actualizados exitosamente "})
-    } catch (error) {
-        console.log(error);
-    }
-}
+export const UpdateMotoviajero = async (req, res, next) => {
+  try {
+    const UpMotoviajero = await Motoviajero.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.json({ message: "datos actualizados exitosamente " });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const VerifyToken = async (req, res) => {
   const { token } = req.cookies;
@@ -132,11 +135,11 @@ export const VerifyToken = async (req, res) => {
   });
 };
 
-export const DeleteMotoviajero= async (req, res) => {
-    try {
-        const motoviajero= await Motoviajero.findByIdAndDelete(req.params.id)
-        res.json({message:"motoviajero eliminado exitosamente"})
-    } catch (error) {
-       res.json({error})
-    }
-}
+export const DeleteMotoviajero = async (req, res) => {
+  try {
+    const motoviajero = await Motoviajero.findByIdAndDelete(req.params.id);
+    res.json({ message: "motoviajero eliminado exitosamente" });
+  } catch (error) {
+    res.json({ error });
+  }
+};
