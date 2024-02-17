@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import MotoviajeroRoutes from "./routes/Motoviajero.Routes.js";
 import MotoRouter from "./routes/motos.routes.js";
 import RutaRouter from "./routes/rutas.routes.js";
+import AdminRouter from './routes/admin.routes.js'
 
 //express variable
 const app = Express();
@@ -26,6 +27,7 @@ app.use(cookieParser());
 app.use("/api", MotoviajeroRoutes);
 app.use("/api", MotoRouter);
 app.use("/api", RutaRouter);
+app.use('/api', AdminRouter)
 
 //exporting the app
 export default app;
