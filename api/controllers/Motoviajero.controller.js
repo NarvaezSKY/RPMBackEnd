@@ -75,8 +75,10 @@ export const LoginMotoviajero = async (req, res) => {
       Email_Mv: UserFound.Email_Mv,
       CreatedAt: UserFound.createdAt,
       UpdatedAt: UserFound.updatedAt,
+      Token: token
     });
   } catch (error) {
+    res.status(400).json({message: error})
     console.log(error);
   }
 };
