@@ -8,7 +8,8 @@ const Motos = new Schema(
     VersionMoto: { type: Number },
     ConsumoMotoLx100km: { type: Number },
     CilindrajeMoto: { type: String },
-    FotoMoto: { type: String }
+    FotoMoto: { type: String },
+    motoviajero: { type: Schema.Types.ObjectId, ref: "Motoviajero", required:true }
   },
   {
     timestamps: true,

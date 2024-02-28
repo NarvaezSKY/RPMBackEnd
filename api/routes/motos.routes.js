@@ -6,6 +6,7 @@ import {
   deleteMoto,
   getAllMotos,
   getMoto,
+  getUserMotos,
 } from "../controllers/motos.controller.js";
 import { AuthRequired } from "../middlewares/ValidateToken.js";
 
@@ -14,7 +15,7 @@ const router = Router();
 router.get("/motos", getAllMotos);
 router.get("/motos/:id", getMoto);
 router.post(
-  "/motos",
+  "/motos", AuthRequired,
   upload.fields([{ name: "FotoMoto", maxCount: 1 }]),
   async (req, res) => {
     let body = req.body;
@@ -23,7 +24,6 @@ router.post(
 
     if (image && image.length > 0) {
       const { downloadURL } = await uploadFile(image[0]);
-      
 
       const savedMoto = await new Moto({
         MotoNombre: body.MotoNombre,
@@ -33,6 +33,7 @@ router.post(
         ConsumoMotoLx100km: parseInt(body.ConsumoMotoLx100km),
         CilindrajeMoto: body.CilindrajeMoto,
         FotoMoto: downloadURL,
+        motoviajero: req.motoviajero.id
       }).save();
       return res.status(200).json({
         savedMoto,
@@ -40,6 +41,8 @@ router.post(
     }
   }
 );
+
+router.get("/usermotos", AuthRequired, getUserMotos);
 
 router.delete("/motos/delete/:id", deleteMoto);
 

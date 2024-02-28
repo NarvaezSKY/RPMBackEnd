@@ -9,6 +9,16 @@ export const getAllMotos = async (req, res) => {
   }
 };
 
+export const getUserMotos=async(req,res)=>{
+  try {
+    const motos = await Moto.find({ motoviajero: req.motoviajero.id });
+    res.json({ motos });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al obtener las motos del usuario" });
+  }
+}
+
 export const getMoto = async (req, res) => {
   try {
     const foundMoto = await Moto.findById({ _id: req.params.id });

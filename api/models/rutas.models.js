@@ -10,6 +10,7 @@ const Rutas = new Schema(
     FotoRuta: { type: String },
     DescripcionRuta: { type: String },
     CalificacionRuta: { type: Number },
+    motoviajero: { type: Schema.Types.ObjectId, ref: "Motoviajero", required:true }
   },
   {
     timestamps: true,

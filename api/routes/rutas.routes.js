@@ -3,6 +3,7 @@ import {
   getRutas,
   getRuta,
   deleteRuta,
+  getUserRutas,
 } from "../controllers/rutas.controller.js";
 import { upload } from "../util/upload.js";
 import { uploadFile } from "../util/uploadFile.js";
@@ -14,7 +15,7 @@ const router = Router();
 router.get("/rutas", getRutas);
 router.get("/rutas/:id", getRuta);
 router.post(
-  "/rutas",
+  "/rutas", AuthRequired,
   upload.fields([{ name: "FotoRuta", maxCount: 1 }]),
   async (req, res) => {
     let body = req.body;
@@ -33,7 +34,8 @@ router.post(
           PresupuestoGas: body.PresupuestoGas,
           FotoRuta: downloadURL,
           DescripcionRuta: body.DescripcionRuta,
-          CalificacionRuta: body.CalificacionRuta
+          CalificacionRuta: body.CalificacionRuta,
+          motoviajero: req.motoviajero.id
         }).save();
         return res.status(200).json({
           savedRuta,
@@ -44,6 +46,8 @@ router.post(
     }
   }
 );
+
+router.get('/userrutas', AuthRequired, getUserRutas)
 
 router.delete("/rutas/delete/:id", deleteRuta);
 

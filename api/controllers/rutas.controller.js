@@ -8,6 +8,16 @@ export const getRutas = async (req, res) => {
     console.error(error);
   }
 };
+export const getUserRutas=async(req,res)=>{
+  try {
+    const rutas = await Ruta.find({ motoviajero: req.motoviajero.id });
+    res.json({ rutas });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al obtener las rutas del usuario" });
+  }
+}
+
 
 export const getRuta = async (req, res) => {
   try {
