@@ -3,7 +3,7 @@ import { adminRegister, adminLogin, getAdmin } from '../controllers/admin.contro
 import { AuthRequired } from '../middlewares/ValidateToken.js'
 
 const router=Router()
-router.get('/getadmins', AuthRequired, getAdmin)
+router.get('/getadmins', getAdmin)
 router.post('/adminregister', adminRegister)
 router.post('/adminlogin', adminLogin)
 
