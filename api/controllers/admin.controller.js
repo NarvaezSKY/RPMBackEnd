@@ -47,7 +47,7 @@ export const adminLogin = async (req, res) => {
 
     const token = await createAccesToken({ id: foundUser._id });
     res.cookie("token", token);
-    res.status(200).json({ foundUser });
+    res.status(200).json({ foundUser, token });
   } catch (error) {
     console.error(error);
   }
