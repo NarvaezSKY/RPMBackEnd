@@ -10,7 +10,7 @@ import AdminRouter from './routes/admin.routes.js'
 const app = Express();
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "*",
   credentials: true,
   optionsSuccessStatus: 200,
 };

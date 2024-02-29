@@ -56,7 +56,7 @@ export const adminLogin = async (req, res) => {
 
 export const AdminVerifyToken = async (req, res) => {
   const { token } = req.headers.authorization;
-  console.log(token);
+  // console.log(token);
 
   if (!token) return res.status(401).json({ message: "unauthorized" });
 
