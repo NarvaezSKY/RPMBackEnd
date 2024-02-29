@@ -1,6 +1,7 @@
 import Admin from "../models/admin.js";
 import brcypt from "bcryptjs";
 import { createAccesToken } from "../libs/jwt.js";
+import  Jwt  from "jsonwebtoken";
 
 export const getAdmin = async (req, res) => {
   try {
@@ -51,4 +52,23 @@ export const adminLogin = async (req, res) => {
   } catch (error) {
     console.error(error);
   }
+};
+
+export const AdminVerifyToken = async (req, res) => {
+  const { token } = req.cookies;
+
+  if (!token) return res.status(401).json({ message: "unauthorized" });
+
+  Jwt.verify(token, TOKEN_SECRET, async (err, motoviajero) => {
+    if (err) return res.status(401).json({ message: "unauthorized" });
+
+    const admin = await Admin.findById(motoviajero.id);
+
+    if (!admin) return res.status(401).json({ message: "unauthorized" });
+
+    return res.json({
+      id: Admin.id,
+      username: Admin.username
+    });
+  });
 };
