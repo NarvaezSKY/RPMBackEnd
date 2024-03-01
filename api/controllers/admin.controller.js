@@ -2,6 +2,7 @@ import Admin from "../models/admin.js";
 import brcypt from "bcryptjs";
 import { createAccesToken } from "../libs/jwt.js";
 import  Jwt  from "jsonwebtoken";
+import { TOKEN_SECRET } from "../config/Token.js";
 
 export const getAdmin = async (req, res) => {
   try {
@@ -55,8 +56,8 @@ export const adminLogin = async (req, res) => {
 };
 
 export const AdminVerifyToken = async (req, res) => {
-  const { token } = req.headers.authorization;
-  // console.log(token);
+  const  token  = req.headers.authorization;
+  // console.log(req.headers.authorization);
 
   if (!token) return res.status(401).json({ message: "unauthorized" });
 

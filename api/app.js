@@ -10,7 +10,7 @@ import AdminRouter from './routes/admin.routes.js'
 const app = Express();
 
 const corsOptions = {
-  origin: "*",
+  origin: ["http://localhost:5173", "https://rpm-back-end.vercel.app/"],
   credentials: true,
   optionsSuccessStatus: 200,
 };
@@ -19,6 +19,8 @@ app.use(Express.json());
 app.use(morgan("dev"));
 app.use(cors(corsOptions));
 app.use(cookieParser());
+
+app.options("*", cors(corsOptions));
 
 app.use("/api", MotoviajeroRoutes);
 app.use("/api", MotoRouter);
