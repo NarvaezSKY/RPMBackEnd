@@ -14,7 +14,7 @@ async function main() {
     //using the enviroment port in app
     app.listen(PORT);
     //log for the port
-    console.log(`Listening on port http://localhost:${PORT}`);
+    console.log(`Listening on port ${PORT}`);
   } catch (error) {
     //log if there's something wrong
     console.error(error);
