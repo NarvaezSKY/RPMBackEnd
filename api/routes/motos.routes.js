@@ -19,12 +19,11 @@ router.post(
   upload.fields([{ name: "FotoMoto", maxCount: 1 }]),
   async (req, res) => {
     let body = req.body;
-    let image = req.files.FotoMoto;
-    console.log(req.files);
 
-    if (image && image.length > 0) {
-      const { downloadURL } = await uploadFile(image[0]);
-
+    // Verifica si existe el campo FotoMoto en req.files
+    if (!req.files || !req.files.FotoMoto) {
+      // Si no existe, puedes manejar este caso según tus requisitos
+      console.log("No se proporcionó la imagen de la moto");
       const savedMoto = await new Moto({
         MotoNombre: body.MotoNombre,
         ModeloMoto: body.ModeloMoto,
@@ -32,15 +31,36 @@ router.post(
         VersionMoto: body.VersionMoto,
         ConsumoMotoLx100km: parseInt(body.ConsumoMotoLx100km),
         CilindrajeMoto: body.CilindrajeMoto,
-        FotoMoto: downloadURL,
         motoviajero: req.motoviajero.id
       }).save();
+
       return res.status(200).json({
         savedMoto,
       });
     }
+
+    let image = req.files.FotoMoto;
+    console.log(req.files);
+
+    const { downloadURL } = await uploadFile(image[0]);
+
+    const savedMoto = await new Moto({
+      MotoNombre: body.MotoNombre,
+      ModeloMoto: body.ModeloMoto,
+      MarcaMoto: body.MarcaMoto,
+      VersionMoto: body.VersionMoto,
+      ConsumoMotoLx100km: parseInt(body.ConsumoMotoLx100km),
+      CilindrajeMoto: body.CilindrajeMoto,
+      FotoMoto: downloadURL,
+      motoviajero: req.motoviajero.id
+    }).save();
+
+    return res.status(200).json({
+      savedMoto,
+    });
   }
 );
+
 
 router.get("/usermotos", AuthRequired, getUserMotos);
 
