@@ -16,33 +16,33 @@ router.get("/motos", getAllMotos);
 router.get("/motos/:id", getMoto);
 router.post(
   "/motos", AuthRequired,
-  upload.fields([{ name: "FotoMoto", maxCount: 1 }]),
+  //upload.fields([{ name: "FotoMoto", maxCount: 1 }]),
   async (req, res) => {
     let body = req.body;
 
-    // Verifica si existe el campo FotoMoto en req.files
-    if (!req.files || !req.files.FotoMoto) {
-      // Si no existe, puedes manejar este caso según tus requisitos
-      console.log("No se proporcionó la imagen de la moto");
-      const savedMoto = await new Moto({
-        MotoNombre: body.MotoNombre,
-        ModeloMoto: body.ModeloMoto,
-        MarcaMoto: body.MarcaMoto,
-        VersionMoto: body.VersionMoto,
-        ConsumoMotoLx100km: parseInt(body.ConsumoMotoLx100km),
-        CilindrajeMoto: body.CilindrajeMoto,
-        motoviajero: req.motoviajero.id
-      }).save();
+    // // Verifica si existe el campo FotoMoto en req.files
+    // if (!req.files || !req.files.FotoMoto) {
+    //   // Si no existe, puedes manejar este caso según tus requisitos
+    //   console.log("No se proporcionó la imagen de la moto");
+    //   const savedMoto = await new Moto({
+    //     MotoNombre: body.MotoNombre,
+    //     ModeloMoto: body.ModeloMoto,
+    //     MarcaMoto: body.MarcaMoto,
+    //     VersionMoto: body.VersionMoto,
+    //     ConsumoMotoLx100km: parseInt(body.ConsumoMotoLx100km),
+    //     CilindrajeMoto: body.CilindrajeMoto,
+    //     motoviajero: req.motoviajero.id
+    //   }).save();
 
-      return res.status(200).json({
-        savedMoto,
-      });
-    }
+    //   return res.status(200).json({
+    //     savedMoto,
+    //   });
+    // }
 
-    let image = req.files.FotoMoto;
-    console.log(req.files);
+    // let image = req.files.FotoMoto;
+    // console.log(req.files);
 
-    const { downloadURL } = await uploadFile(image[0]);
+    // const { downloadURL } = await uploadFile(image[0]);
 
     const savedMoto = await new Moto({
       MotoNombre: body.MotoNombre,
@@ -51,7 +51,7 @@ router.post(
       VersionMoto: body.VersionMoto,
       ConsumoMotoLx100km: parseInt(body.ConsumoMotoLx100km),
       CilindrajeMoto: body.CilindrajeMoto,
-      FotoMoto: downloadURL,
+      FotoMoto: body.FotoMoto,
       motoviajero: req.motoviajero.id
     }).save();
 
