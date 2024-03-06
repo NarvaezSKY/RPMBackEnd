@@ -69,7 +69,7 @@ export const LoginMotoviajero = async (req, res) => {
       return res.status(404).json({ message: "incorrect password" });
 
     const token = await createAccesToken({ id: UserFound._id });
-    res.headres("Authorization", token);
+    res.header("Authorization", token);
     res.json({
       id: UserFound._id,
       Email_Mv: UserFound.Email_Mv,
