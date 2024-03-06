@@ -85,11 +85,10 @@ export const LoginMotoviajero = async (req, res) => {
 
 // esta funcion realiza el cierre de sesion
 export const Logout = async (req, res) => {
-
-  res.header("Authorization", "", {
-    expires: new Date(0),
+  res.setHeader("Authorization", "",{
+      expires: new Date(0)
   });
-  return res.status(200).json({message:"logout success"});
+  return res.status(200).json({ message: "logout success" });
 };
 
 // export const profile = async (req, res) => {
