@@ -69,7 +69,7 @@ export const LoginMotoviajero = async (req, res) => {
       return res.status(404).json({ message: "incorrect password" });
 
     const token = await createAccesToken({ id: UserFound._id });
-    res.header("Authorization", token);
+    res.cookie("token", token);
     res.json({
       id: UserFound._id,
       Email_Mv: UserFound.Email_Mv,
@@ -85,8 +85,10 @@ export const LoginMotoviajero = async (req, res) => {
 
 // esta funcion realiza el cierre de sesion
 export const Logout = async (req, res) => {
-  res.removeHeader("Authorization");
-  return res.status(200).json({ message: "Logout exitoso" });
+  res.cookie("token", "", {
+    expires: new Date(0),
+  });
+  return res.sendStatus(200);
 };
 
 // export const profile = async (req, res) => {
