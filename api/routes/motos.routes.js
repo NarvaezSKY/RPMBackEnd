@@ -14,8 +14,7 @@ const router = Router();
 
 router.get("/motos", getAllMotos);
 router.get("/motos/:id", getMoto);
-router.post(
-  "/motos", AuthRequired,
+router.post("/motos", AuthRequired,
   //upload.fields([{ name: "FotoMoto", maxCount: 1 }]),
   async (req, res) => {
     let body = req.body;
@@ -66,14 +65,13 @@ router.get("/usermotos", AuthRequired, getUserMotos);
 
 router.delete("/motos/delete/:id", deleteMoto);
 
-router.put(
-  "/motos/update/:id",
+router.put("/motos/update/:id",
   upload.fields([{ name: "FotoMoto", maxCount: 1 }]),
   async (req, res) => {
     try {
       const motoId = req.params.id;
       const body = req.body;
-      const image = req.files.FotoMoto;
+      // const image = req.files.FotoMoto;
 
       let nuevosDatos = {
         MotoNombre: body.MotoNombre,
@@ -82,12 +80,13 @@ router.put(
         VersionMoto: body.VersionMoto,
         ConsumoMotoLx100km: body.ConsumoMotoLx100km,
         CilindrajeMoto: body.CilindrajeMoto,
+        FotoMoto: body.FotoMoto
       };
 
-      if (image && image.length > 0) {
-        const { downloadURL } = await uploadFile(image[0]);
-        nuevosDatos.FotoMoto = downloadURL;
-      }
+      // if (image && image.length > 0) {
+      //   const { downloadURL } = await uploadFile(image[0]);
+      //   nuevosDatos.FotoMoto = downloadURL;
+      // }
 
       const motoActualizada = await Moto.findByIdAndUpdate(
         motoId,

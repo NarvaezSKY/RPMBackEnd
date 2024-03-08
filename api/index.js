@@ -3,9 +3,7 @@ import app from "./app.js";
 import { PORT } from "./config/config.js";
 import { connection } from "./database/db.js";
 
-// se importa la funcion db y se llama aca
-import { Db } from "./db.js";
-// Db();
+
 //main function
 async function main() {
   try {

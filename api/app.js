@@ -7,6 +7,7 @@ import MotoRouter from "./routes/motos.routes.js";
 import RutaRouter from "./routes/rutas.routes.js";
 import AdminRouter from './routes/admin.routes.js';
 import PQRSRouter from './routes/PQRS.routes.js';
+import gasRouter from './routes/gas.routes.js'
 
 const app = Express();
 
@@ -28,5 +29,6 @@ app.use("/api", MotoRouter);
 app.use("/api", RutaRouter);
 app.use('/api', AdminRouter)
 app.use('/api', PQRSRouter)
+app.use('/api', gasRouter)
 
 export default app;
