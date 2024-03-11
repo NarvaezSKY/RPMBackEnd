@@ -3,7 +3,7 @@ import { Router } from "express";
 
 const router=Router();
 
-router.get('/getpqrs', getAllPQRS)
-router.post('/uploadpqrs', uploadPQRS)
+router.get('/pqrs', getAllPQRS)
+router.post('/pqrs', uploadPQRS)
 
 export default router;
