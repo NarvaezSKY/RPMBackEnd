@@ -34,6 +34,8 @@ export const RegisterMotoviajeros = async (req, res) => {
     const Telefono = await Motoviajero.findOne({ NumeroTel_Mv });
     if (Telefono) return res.status(404).json(["the telefono already exists"]);
     const Passwordhash = await bcrypt.hash(Contraseña_Mv, 10);
+    let image=req.body.ImageUser;
+    if (!image) image='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
     const newMotoviajero = new Motoviajero({
       Nombres_Mv,
       Apellidos_Mv,
@@ -42,7 +44,7 @@ export const RegisterMotoviajeros = async (req, res) => {
       FechaNac_Mv,
       Contraseña_Mv: Passwordhash,
       NumeroTel_Mv,
-      ImageUser,
+      ImageUser: image,
     });
 
     const MotoviajeroSaved = await newMotoviajero.save();
