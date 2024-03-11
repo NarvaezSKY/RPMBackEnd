@@ -100,18 +100,38 @@ export const profile = async (req, res) => {
   });
 };
 
+
 export const UpdateMotoviajero = async (req, res, next) => {
   try {
-    const UpMotoviajero = await Motoviajero.findByIdAndUpdate(
-      req.params.id,
+    const { id } = req.params;
+    const { Contraseña_Mv } = req.body;
+
+    // Verificar si la contraseña se proporcionó en la solicitud y si es diferente de la contraseña actual
+    if (Contraseña_Mv) {
+      // Hashear la nueva contraseña
+      const hashedPassword = await bcrypt.hash(Contraseña_Mv, 10);
+      // Actualizar la contraseña en el cuerpo de la solicitud
+      req.body.Contraseña_Mv = hashedPassword;
+    }
+
+    // Actualizar el motoviajero en la base de datos
+    const updatedMotoviajero = await Motoviajero.findByIdAndUpdate(
+      id,
       req.body,
       { new: true }
     );
-    res.json({ message: "datos actualizados exitosamente " });
+
+    if (!updatedMotoviajero) {
+      return res.status(404).json({ message: "Motoviajero not found" });
+    }
+
+    return res.json({ message: "Datos actualizados exitosamente", updatedMotoviajero });
   } catch (error) {
-    console.log(error);
+    console.error("Error updating motoviajero:", error);
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
+
 
 export const VerifyToken = async (req, res) => {
   const { token } = req.cookies;
