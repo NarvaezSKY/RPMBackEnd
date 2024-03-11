@@ -7,6 +7,7 @@ import {
   VerifyToken,
   UpdateMotoviajero,
   DeleteMotoviajero,
+  profile
 } from "../controllers/Motoviajero.controller.js";
 import { ValidateSchema } from "../middlewares/ValidateToken.middlewares.js";
 import { LoginSchema, RegisterSchema } from "../schemas/Motoviajero.Schema.js";
@@ -22,5 +23,6 @@ router.post("/logout", Logout);
 router.get("/verify", VerifyToken);
 router.put("/updateuser/:id", UpdateMotoviajero);
 router.delete("/deleteuser/:id", DeleteMotoviajero);
+router.get("/profile", AuthRequired, profile);
 
 export default router;

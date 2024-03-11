@@ -91,18 +91,14 @@ export const Logout = async (req, res) => {
   return res.sendStatus(200);
 };
 
-// export const profile = async (req, res) => {
-//   const UserFound = await Motoviajero.findById(req.motoviajero.id);
-//   if (!UserFound)
-//     return res.sendStatus(400).json({ message: "user not found" });
-//   return res.json({
-//     id: UserFound._id,
-//     Nombre: UserFound.Nombres_Mv,
-//     Email: UserFound.Email_Mv,
-//     CreatedAt: UserFound.createdAt,
-//     UpdatedAt: UserFound.updatedAt,
-//   });
-// };
+export const profile = async (req, res) => {
+  const UserFound = await Motoviajero.findById(req.motoviajero.id);
+  if (!UserFound)
+    return res.sendStatus(400).json({ message: "user not found" });
+  return res.json({
+    UserFound
+  });
+};
 
 export const UpdateMotoviajero = async (req, res, next) => {
   try {
