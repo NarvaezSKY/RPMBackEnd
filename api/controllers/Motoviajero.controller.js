@@ -71,7 +71,8 @@ export const LoginMotoviajero = async (req, res) => {
     );
     if (!IsMatch)
       return res.status(404).json({ message: "incorrect password" });
-
+      const estado=UserFound.Estado
+    if (!estado) return res.status(401).json({message: 'Usuario suspendido. Si cree que esto es un error, pongase en contacto con el equipo RPM. adsorpm@gmail.com'})
     const token = await createAccesToken({ id: UserFound._id });
     res.cookie("token", token);
     res.json({

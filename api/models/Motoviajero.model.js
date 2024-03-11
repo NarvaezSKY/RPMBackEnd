@@ -1,4 +1,5 @@
 import mongoose, { Schema, model } from "mongoose";
+import { boolean } from "zod";
 
 const MotoviajeroSchema = new Schema(
   {
@@ -31,6 +32,10 @@ const MotoviajeroSchema = new Schema(
     },
     ImageUser: {
       type: String,
+    },
+    Estado:{
+      type: Boolean,
+      default: true
     }
   },
   {
