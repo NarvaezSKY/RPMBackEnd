@@ -24,6 +24,7 @@ export const RegisterMotoviajeros = async (req, res) => {
     FechaNac_Mv,
     Contraseña_Mv,
     NumeroTel_Mv,
+    ImageUser,
   } = req.body;
 
   try {
@@ -41,6 +42,7 @@ export const RegisterMotoviajeros = async (req, res) => {
       FechaNac_Mv,
       Contraseña_Mv: Passwordhash,
       NumeroTel_Mv,
+      ImageUser,
     });
 
     const MotoviajeroSaved = await newMotoviajero.save();

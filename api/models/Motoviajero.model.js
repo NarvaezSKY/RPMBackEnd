@@ -29,6 +29,9 @@ const MotoviajeroSchema = new Schema(
     NumeroTel_Mv: {
       type: Number,
     },
+    ImageUser: {
+      type: String,
+    }
   },
   {
     timestamps: true,
