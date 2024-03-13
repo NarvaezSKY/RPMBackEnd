@@ -6,9 +6,9 @@ export const calculate = async (req, res) => {
     const precioGasolina = await Gas.findOne().lean();
     console.log(precioGasolina)
 
-    const numeroPrecio = parseInt(precioGasolina.PrecioGas);
+    const numeroPrecio = parseFloat(precioGasolina.PrecioGas);
     
-    const presupuesto =(parseInt(NumeroKm) / 100 * parseInt(ConsumoMoto)*numeroPrecio)
+    const presupuesto =(parseFloat(NumeroKm) / 100 * parseFloat(ConsumoMoto)*numeroPrecio)
 
     res.status(200).json({ presupuesto });
   } catch (error) {
