@@ -6,6 +6,7 @@ const PQRS= new Schema(
         emailusuario:{type: String},
         asuntopqrs:{type: String},
         textopqrs:{type: String},
+        estado:{type: String}
     },
 
     {timestamps: true}
