@@ -13,7 +13,7 @@ import presupuestoRouter from './routes/presupuesto.routes.js'
 const app = Express();
 
 const corsOptions = {
-  origin: ["http://localhost:5173", "https://rpm-back-end.vercel.app/", "https://rutasparamoteros.vercel.app"],
+  origin: ["https://rpm-back-end.vercel.app/", "https://rutasparamoteros.vercel.app"],
   credentials: true,
   optionsSuccessStatus: 200,
 };
