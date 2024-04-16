@@ -14,6 +14,15 @@ export const GetAllMotoviajeros = async (req, res) => {
   }
 };
 
+export const getOneMotoviajero=async(req, res)=>{
+  try {
+    const motoviajero=await Motoviajero.findById(req.params.id)
+    res.json(motoviajero)
+  } catch (error) {
+    res.status(400).json({message: error})
+  }
+}
+
 // esta funcion crea o registra los datos ingresados en la base de datos
 export const RegisterMotoviajeros = async (req, res) => {
   const {
