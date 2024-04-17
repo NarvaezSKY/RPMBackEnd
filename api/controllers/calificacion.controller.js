@@ -2,6 +2,9 @@ import Ruta from '../models/rutas.models.js';
 
 export const updateRutaCalificacion = async (req, res) => {
   const { calificacion } = req.body;
+  if (typeof calificacion !== 'number') {
+    return res.status(400).json({ message: 'La calificación debe ser un número' });
+  }
 
   try {
     // Encuentra la ruta por su ID
