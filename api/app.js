@@ -9,7 +9,8 @@ import AdminRouter from './routes/admin.routes.js';
 import PQRSRouter from './routes/PQRS.routes.js';
 import gasRouter from './routes/gas.routes.js'
 import presupuestoRouter from './routes/presupuesto.routes.js';
-import passwdRouter from './routes/passwdchange.routes.js'
+import passwdRouter from './routes/passwdchange.routes.js';
+import calificacionRouter from './routes/calificacion.routes.js';
 
 const app = Express();
 
@@ -34,5 +35,6 @@ app.use('/api', PQRSRouter)
 app.use('/api', gasRouter)
 app.use('/api', presupuestoRouter)
 app.use ('/api', passwdRouter)
+app.use ('/api', calificacionRouter)
 
 export default app;
