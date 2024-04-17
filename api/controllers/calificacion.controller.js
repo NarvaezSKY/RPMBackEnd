@@ -12,10 +12,11 @@ export const updateRutaCalificacion = async (req, res) => {
     }
     console.log(ruta)
     // Agrega la nueva calificación al array de calificaciones de la ruta
-    ruta.Calificaciones.push(calificacion);
+    ruta.Calificaciones.push(parseInt(calificacion));
 
     // Guarda la ruta actualizada en la base de datos
     await ruta.save();
+    console.log(calificacion)
 
     return res.status(200).json({ message: 'Ruta calificación updated successfully', calificacion });
   } catch (error) {
